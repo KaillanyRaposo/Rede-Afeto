@@ -1,1 +1,2 @@
-Pasta destinada ao desenvolvimento futuro do backend
+Pasta destinada ao desenvolvimento futuro do backend.
+
