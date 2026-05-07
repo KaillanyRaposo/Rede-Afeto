@@ -1,13 +1,9 @@
-"""
-Configurações do Django para o projeto django-auth-backend.
-"""
+
 import os
 from decouple import config
 
-# ─── Caminhos base ────────────────────────────────────────────────────────────
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-# ─── Segurança ────────────────────────────────────────────────────────────────
 SECRET_KEY = config(
     'SECRET_KEY',
     default='django-insecure-troque-esta-chave-em-producao-!@#$%^&*()'
@@ -36,7 +32,6 @@ INSTALLED_APPS = [
     'auth_app',
 ]
 
-# ─── Middleware ───────────────────────────────────────────────────────────────
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'corsheaders.middleware.CorsMiddleware',
@@ -50,7 +45,6 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'config.urls'
 
-# ─── Templates ────────────────────────────────────────────────────────────────
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -69,7 +63,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'config.wsgi.application'
 
-# ─── Banco de dados (MySQL) ───────────────────────────────────────────────────
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
@@ -85,7 +78,6 @@ DATABASES = {
     }
 }
 
-# ─── Validação de senhas ──────────────────────────────────────────────────────
 AUTH_PASSWORD_VALIDATORS = [
     {'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator'},
     {'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator'},
@@ -93,13 +85,11 @@ AUTH_PASSWORD_VALIDATORS = [
     {'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator'},
 ]
 
-# ─── Internacionalização ──────────────────────────────────────────────────────
 LANGUAGE_CODE = 'pt-br'
 TIME_ZONE = 'America/Sao_Paulo'
 USE_I18N = True
 USE_TZ = True
 
-# ─── Arquivos estáticos ───────────────────────────────────────────────────────
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
@@ -111,7 +101,6 @@ REST_FRAMEWORK = {
     ],
 }
 
-# ─── CORS ─────────────────────────────────────────────────────────────────────
 CORS_ALLOWED_ORIGINS = [
     'http://localhost:3000',
     'http://localhost:8000',

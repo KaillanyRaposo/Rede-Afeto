@@ -31,8 +31,6 @@ class LoginView(APIView):
                 status=status.HTTP_401_UNAUTHORIZED
             )
 
-        # Atenção: isso compara senha em texto puro.
-        # Funciona se a tabela Usuario estiver salvando senha normal.
         if usuario.senha != senha:
             return Response(
                 {'erro': 'Email ou senha inválidos.'},
