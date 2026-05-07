@@ -177,7 +177,7 @@ export default function Login({ setCurrentPage, initialTab }) {
                 <label>Nome completo</label>
 
                 <div className="input-with-icon">
-                  <span className="icon">👤</span>
+                  <span className="icon"></span>
                   <input
                     type="text"
                     placeholder="Digite seu nome"
