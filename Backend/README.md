@@ -1,4 +1,4 @@
-# Rapaz - Backend Django
+# Backend Django
 
 Backend desenvolvido em **Python**, utilizando **Django** e **Django REST Framework**, com integração a um banco de dados **MySQL** hospedado no Railway.
 
