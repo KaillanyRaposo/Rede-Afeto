@@ -1,10 +1,9 @@
 import { useState } from "react";
 import "../login.css";
-import { loginUser } from "../services/api";
-import { saveAuthData } from "../utils/authStorage";
 
 export default function Login({ setCurrentPage, initialTab }) {
   const [activeTab, setActiveTab] = useState(initialTab ?? "login");
+  const [userType, setUserType] = useState("crianca");
 
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
@@ -25,45 +24,32 @@ export default function Login({ setCurrentPage, initialTab }) {
     setMessage("");
     setError("");
 
-    try {
-      const data = await loginUser({
-        email,
-        senha,
-      });
-
-      saveAuthData(
-        {
-          token: data.token,
-          usuario: data.usuario,
-        },
-        remember
-      );
-
+    setTimeout(() => {
       setMessage("Login realizado com sucesso!");
-
-      setTimeout(() => {
-        setCurrentPage("home");
-      }, 700);
-    } catch (err) {
-      setError(err.message || "Não foi possível fazer login.");
-    } finally {
       setLoading(false);
-    }
+
+      if (userType === "ong") {
+        setCurrentPage("postagem");
+        return;
+      }
+
+      setCurrentPage("biblioteca");
+    }, 300);
   }
 
   function handleSignup(event) {
     event.preventDefault();
 
-    setMessage("");
-    setError(
-      "Cadastro ainda não está integrado ao backend. No momento, apenas o login está funcionando."
-    );
+    setMessage("Cadastro realizado com sucesso!");
+    setError("");
 
-    console.log({
-      nomeCadastro,
-      emailCadastro,
-      senhaCadastro,
-    });
+    setTimeout(() => {
+      if (userType === "ong") {
+        setCurrentPage("postagem");
+        return;
+      }
+      setCurrentPage("biblioteca");
+    }, 700);
   }
 
   return (
@@ -74,11 +60,35 @@ export default function Login({ setCurrentPage, initialTab }) {
 
       <div className="new-login-content">
         <div className="logo-section">
-          <div className="logo-heart">♡</div>
           <h1>Rede Afeto</h1>
         </div>
 
         <div className="auth-card">
+          <div className="user-type" role="group" aria-label="Tipo de usuário">
+            <button
+              type="button"
+              className={`user-type-btn ${userType === "crianca" ? "active" : ""}`}
+              onClick={() => {
+                setUserType("crianca");
+                setMessage("");
+                setError("");
+              }}
+            >
+              Criança
+            </button>
+            <button
+              type="button"
+              className={`user-type-btn ${userType === "ong" ? "active" : ""}`}
+              onClick={() => {
+                setUserType("ong");
+                setMessage("");
+                setError("");
+              }}
+            >
+              ONG
+            </button>
+          </div>
+
           <div className="tabs">
             <button
               type="button"
@@ -106,41 +116,32 @@ export default function Login({ setCurrentPage, initialTab }) {
           </div>
 
           {message && (
-            <p style={{ color: "#2f7d32", marginBottom: "15px" }}>
-              {message}
-            </p>
+            <p className="auth-message auth-message--success">{message}</p>
           )}
 
-          {error && (
-            <p style={{ color: "#b3261e", marginBottom: "15px" }}>
-              {error}
-            </p>
-          )}
+          {error && <p className="auth-message auth-message--error">{error}</p>}
 
           {activeTab === "login" ? (
             <form className="form-section" onSubmit={handleLogin}>
               <div className="input-group">
-                <label>Email</label>
+                <label htmlFor="login-email">{userType === "ong" ? "Email da ONG" : "Email"}</label>
 
                 <div className="input-with-icon">
                   <span className="icon"></span>
                   <input
+                    id="login-email"
                     type="email"
                     placeholder="Digite seu email"
                     value={email}
                     onChange={(event) => setEmail(event.target.value)}
-                    required
                   />
                 </div>
               </div>
 
               <div className="input-group">
                 <div className="label-row">
-                  <label>Senha</label>
-                  <span
-                    className="forgot-text"
-                    onClick={() => setCurrentPage("forgot")}
-                  >
+                  <label htmlFor="login-password">Senha</label>
+                  <span className="forgot-text" onClick={() => setCurrentPage("forgot")}>
                     Esqueceu a senha?
                   </span>
                 </div>
@@ -148,11 +149,11 @@ export default function Login({ setCurrentPage, initialTab }) {
                 <div className="input-with-icon">
                   <span className="icon"></span>
                   <input
+                    id="login-password"
                     type="password"
                     placeholder="Digite sua senha"
                     value={senha}
                     onChange={(event) => setSenha(event.target.value)}
-                    required
                   />
                 </div>
               </div>
@@ -174,52 +175,52 @@ export default function Login({ setCurrentPage, initialTab }) {
           ) : (
             <form className="form-section" onSubmit={handleSignup}>
               <div className="input-group">
-                <label>Nome completo</label>
+                <label htmlFor="signup-name">{userType === "ong" ? "Nome da ONG" : "Nome da Criança"}</label>
 
                 <div className="input-with-icon">
                   <span className="icon"></span>
                   <input
+                    id="signup-name"
                     type="text"
-                    placeholder="Digite seu nome"
+                    placeholder={userType === "ong" ? "Digite o nome da ONG" : "Digite o nome"}
                     value={nomeCadastro}
                     onChange={(event) => setNomeCadastro(event.target.value)}
-                    required
                   />
                 </div>
               </div>
 
               <div className="input-group">
-                <label>Email</label>
+                <label htmlFor="signup-email">{userType === "ong" ? "Email da ONG" : "Email"}</label>
 
                 <div className="input-with-icon">
                   <span className="icon"></span>
                   <input
+                    id="signup-email"
                     type="email"
                     placeholder="Digite seu email"
                     value={emailCadastro}
                     onChange={(event) => setEmailCadastro(event.target.value)}
-                    required
                   />
                 </div>
               </div>
 
               <div className="input-group">
-                <label>Senha</label>
+                <label htmlFor="signup-password">Senha</label>
 
                 <div className="input-with-icon">
                   <span className="icon"></span>
                   <input
+                    id="signup-password"
                     type="password"
                     placeholder="Digite sua senha"
                     value={senhaCadastro}
                     onChange={(event) => setSenhaCadastro(event.target.value)}
-                    required
                   />
                 </div>
               </div>
 
-              <button className="signin-btn" type="submit">
-                Criar Conta
+              <button className="signin-btn" type="submit" disabled={loading}>
+                {loading ? "Enviando..." : "Criar Conta"}
               </button>
             </form>
           )}

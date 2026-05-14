@@ -1,17 +1,18 @@
 import "../home.css";
+import "../historias.css";
 import { useState, useEffect } from "react";
 
 const images = [
   {
-    src: "/foto1.jpg",
+    src: "/foto1.png",
     alt: "Crianças brincando com blocos"
   },
   {
-    src: "/foto2.jpg",
+    src: "/foto2.png",
     alt: "Criança pintando"
   },
   {
-    src: "/foto3.jpg",
+    src: "/foto3.png",
     alt: "Criança sorrindo"
   }
 ];
@@ -34,37 +35,33 @@ export default function Home({ setCurrentPage }) {
         <div className="blob blob-4" />
       </div>
       {/* Barra de navegação */}
-      <nav className="navbar">
-        <div className="nav-logo">
-          <div className="nav-brand">
-            <svg
-              className="nav-heart-icon"
-              viewBox="0 0 100 100"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-              aria-hidden="true"
-            >
-              <path
-                d="M50 85C50 85 15 57 15 37C15 25 25 15 37 15C42 15 47 17 50 22C53 17 58 15 63 15C75 15 85 25 85 37C85 57 50 85 50 85Z"
-                stroke="#2C3C3C"
-                strokeWidth="5"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            </svg>
-            <h2 className="brand-name">RedeAfeto</h2>
-          </div>
+      <nav className="historias-navbar">
+        <div className="historias-brand brand-name">RedeAfeto</div>
+
+        <div className="historias-navlinks" role="navigation" aria-label="Menu">
+          <button type="button" className="historias-navlink is-active" onClick={() => setCurrentPage("home")}>
+            Início
+          </button>
+          <button type="button" className="historias-navlink" onClick={() => setCurrentPage("historias")}>
+            Histórias
+          </button>
+          <button type="button" className="historias-navlink" onClick={() => setCurrentPage("apadrinhamento")}>
+            O que é apadrinhamento afetivo
+          </button>
+          <button type="button" className="historias-navlink" onClick={() => setCurrentPage("sobre-nos")}>
+            Sobre nós
+          </button>
         </div>
-        <div className="nav-links">
-          <span>Histórias</span>
-          <span>O que é apadrinhamento afetivo</span>
-          <span>Sobre nós</span>
-        </div>
-        <div className="nav-buttons">
-          <button className="btn-login" onClick={() => setCurrentPage("login")}>
+
+        <div className="historias-actions">
+          <button type="button" className="historias-action-link" onClick={() => setCurrentPage("login")}>
             Login
           </button>
-          <button className="btn-register" onClick={() => setCurrentPage("login", "signup")}>
+          <button
+            type="button"
+            className="historias-action-primary"
+            onClick={() => setCurrentPage("login", "signup")}
+          >
             Cadastre-se
           </button>
         </div>
@@ -81,8 +78,10 @@ export default function Home({ setCurrentPage }) {
             Conheça Histórias. Crie conexões. Transforme vidas
           </p>
           <div className="hero-buttons">
-            <button className="btn-primary">Conheça nossas histórias</button>
-            <button className="btn-secondary">
+            <button className="btn-primary" onClick={() => setCurrentPage("historias")}>
+              Conheça nossas histórias
+            </button>
+            <button className="btn-secondary" onClick={() => setCurrentPage("apadrinhamento")}>
               Entenda o que é apadrinhamento afetivo
             </button>
           </div>
@@ -134,11 +133,12 @@ export default function Home({ setCurrentPage }) {
             <div className="goal-text">
               <h2 className="section-title">Nosso Objetivo</h2>
               <p>
-                Nosso projeto tem como objetivo dar visibilidade às histórias de crianças acolhidas, compartilhando suas trajetórias e realidades para ampliar o conhecimento da sociedade sobre esse contexto. Buscamos sensibilizar a população sobre os desafios enfrentados por essas crianças, promovendo empatia, conscientização e uma compreensão mais humana sobre a importância do acolhimento e do apoio social.
+               Nosso projeto busca aproximar a sociedade da realidade de crianças e adolescentes em situação de acolhimento institucional de forma segura e humanizada, promovendo empatia, conscientização e apoio social. Além disso, a plataforma busca incentivar o hábito da leitura através de uma biblioteca digital gratuita,contribuindo para o aprendizado e desenvolvimento das crianças.
+
               </p>
             </div>
             <div className="goal-image">
-              <img src="/foto2.jpg" alt="Criança sorrindo" />
+              <img src="/foto4.png" alt="Criança sorrindo" />
             </div>
           </div>
         </div>
@@ -150,8 +150,8 @@ export default function Home({ setCurrentPage }) {
           <h3 className="brand-name">RedeAfeto</h3>
           <p>Conectando corações, transformando vidas.</p>
           <div className="footer-links">
-            <span>Histórias</span>
-            <span>Sobre nós</span>
+            <span onClick={() => setCurrentPage("historias")}>Histórias</span>
+            <span onClick={() => setCurrentPage("sobre-nos")}>Sobre nós</span>
             <span>Contato</span>
           </div>
           <p className="copyright">© 2026 RedeAfeto. Todos os direitos reservados.</p>

@@ -48,11 +48,6 @@ html, body {
   color: #2C3C3C;
 }
 
-.heart {
-  width: 100px;
-  height: 100px;
-  margin-bottom: 10px;
-}
 
 .right {
   width: 50%;
@@ -80,6 +75,7 @@ html, body {
   text-align: center;
   margin-bottom: 30px;
   font-size: 2.5rem;
+  color: #2C3C3C;
 }
 
 .card label {
@@ -87,6 +83,7 @@ html, body {
   margin-top: 15px;
   display: block;
   font-weight: 600;
+  color: #2C3C3C;
 }
 
 .card input {
@@ -96,6 +93,7 @@ html, body {
   border-radius: 20px;
   border: 1px solid #ccc;
   font-size: 14px;
+  color: #2C3C3C;
 }
 
 .password-input {
@@ -130,11 +128,11 @@ html, body {
 }
 
 .links span {
-  color: #666;
+  color: #2C3C3C;
 }
 
 .forgot {
-  color: #86ADB6;
+  color: #2C3C3C;
   cursor: pointer;
   text-decoration: none;
 }
@@ -205,7 +203,7 @@ html, body {
   background: none;
   border: none;
   font-size: 1rem;
-  color: #86ADB6;
+  color: #2C3C3C;
   cursor: pointer;
   padding: 10px;
   transition: color 0.3s;
@@ -227,19 +225,6 @@ html, body {
   margin-bottom: 30px;
 }
 
-.logo-heart {
-  margin-bottom: 10px;
-  display: inline-block;
-  background: transparent;
-  padding: 0;
-  border-radius: 0;
-}
-
-.logo-heart-icon {
-  width: 50px;
-  height: 50px;
-  display: block;
-}
 
 .logo-section h1 {
   font-family: 'Playfair Display', serif;
@@ -256,10 +241,53 @@ html, body {
   box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
 }
 
+.user-type {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+  margin-bottom: 18px;
+}
+
+.user-type-btn {
+  border: 1px solid rgba(44, 60, 60, 0.16);
+  background: rgba(248, 243, 227, 0.8);
+  color: #2C3C3C;
+  border-radius: 999px;
+  padding: 10px 12px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s, border-color 0.2s;
+}
+
+.user-type-btn:hover {
+  background: rgba(134, 173, 182, 0.18);
+  border-color: rgba(108, 143, 151, 0.75);
+}
+
+.user-type-btn.active {
+  background: rgba(134, 173, 182, 0.35);
+  border-color: rgba(108, 143, 151, 0.9);
+}
+
 .tabs {
   display: flex;
   border-bottom: 1px solid #eee;
   margin-bottom: 25px;
+}
+
+.auth-message {
+  margin: 0 0 15px;
+  font-size: 0.92rem;
+  font-weight: 600;
+}
+
+.auth-message--success {
+  color: #2f7d32;
+}
+
+.auth-message--error {
+  color: #b3261e;
 }
 
 .tab {
@@ -269,13 +297,13 @@ html, body {
   border: none;
   font-size: 0.95rem;
   cursor: pointer;
-  color: #888;
+  color: #2C3C3C;
   position: relative;
   transition: color 0.3s;
 }
 
 .tab.active {
-  color: #86ADB6;
+  color: #2C3C3C;
   font-weight: 600;
 }
 
@@ -303,7 +331,7 @@ html, body {
 
 .input-group label {
   font-size: 0.9rem;
-  color: #444;
+  color: #2C3C3C;
   font-weight: 600;
 }
 
@@ -315,7 +343,7 @@ html, body {
 
 .forgot-text {
   font-size: 0.85rem;
-  color: #86ADB6;
+  color: #2C3C3C;
   cursor: pointer;
 }
 
@@ -338,10 +366,11 @@ html, body {
   background: none;
   font-size: 0.95rem;
   outline: none;
+  color: #2C3C3C;
 }
 
 .input-with-icon input::placeholder {
-  color: #999;
+  color: rgba(44, 60, 60, 0.55);
 }
 
 .remember-me {
@@ -349,7 +378,7 @@ html, body {
   align-items: center;
   gap: 8px;
   font-size: 0.9rem;
-  color: #666;
+  color: #2C3C3C;
 }
 
 .remember-me input {
