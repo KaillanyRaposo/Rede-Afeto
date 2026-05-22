@@ -1,3 +1,8 @@
+"""
+Configuração WSGI para o projeto django-auth-backend.
+
+Expõe o callable WSGI como uma variável de módulo chamada ``application``.
+"""
 import os
 from django.core.wsgi import get_wsgi_application
 

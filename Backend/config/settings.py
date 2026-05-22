@@ -1,9 +1,13 @@
-
+"""
+Configurações do Django para o projeto django-auth-backend.
+"""
 import os
 from decouple import config
 
+# ─── Caminhos base ────────────────────────────────────────────────────────────
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
+# ─── Segurança ────────────────────────────────────────────────────────────────
 SECRET_KEY = config(
     'SECRET_KEY',
     default='django-insecure-troque-esta-chave-em-producao-!@#$%^&*()'
@@ -32,19 +36,22 @@ INSTALLED_APPS = [
     'auth_app',
 ]
 
+# ─── Middleware ───────────────────────────────────────────────────────────────
 MIDDLEWARE = [
-    'django.middleware.security.SecurityMiddleware',
+    'auth_app.middleware.ForceCorsMiddleware',
     'corsheaders.middleware.CorsMiddleware',
+
+    'django.middleware.security.SecurityMiddleware',
+    'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
-    'django.contrib.sessions.middleware.SessionMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
-
 ROOT_URLCONF = 'config.urls'
 
+# ─── Templates ────────────────────────────────────────────────────────────────
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -63,6 +70,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'config.wsgi.application'
 
+# ─── Banco de dados (MySQL) ───────────────────────────────────────────────────
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
@@ -78,6 +86,7 @@ DATABASES = {
     }
 }
 
+# ─── Validação de senhas ──────────────────────────────────────────────────────
 AUTH_PASSWORD_VALIDATORS = [
     {'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator'},
     {'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator'},
@@ -85,11 +94,13 @@ AUTH_PASSWORD_VALIDATORS = [
     {'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator'},
 ]
 
+# ─── Internacionalização ──────────────────────────────────────────────────────
 LANGUAGE_CODE = 'pt-br'
 TIME_ZONE = 'America/Sao_Paulo'
 USE_I18N = True
 USE_TZ = True
 
+# ─── Arquivos estáticos ───────────────────────────────────────────────────────
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
@@ -101,11 +112,11 @@ REST_FRAMEWORK = {
     ],
 }
 
+# ─── CORS ─────────────────────────────────────────────────────────────────────
 CORS_ALLOWED_ORIGINS = [
-    'http://localhost:3000',
-    'http://localhost:8000',
-    'http://127.0.0.1:3000',
-    'http://127.0.0.1:8000',
+    "http://localhost:5173",
+    "http://127.0.0.1:5173",
 ]
 
-CORS_ALLOW_CREDENTIALS = True
+CORS_ALLOW_ALL_ORIGINS = False
+CORS_ALLOW_CREDENTIALS = False
