@@ -1,5 +1,11 @@
+import {
+  loginUsuario,
+  cadastrarUsuario,
+  salvarSessao,
+} from "../services/authService";
 import { useState } from "react";
 import "../login.css";
+
 
 export default function Login({ setCurrentPage, initialTab }) {
   const [activeTab, setActiveTab] = useState(initialTab ?? "login");
@@ -18,39 +24,74 @@ export default function Login({ setCurrentPage, initialTab }) {
   const [error, setError] = useState("");
 
   async function handleLogin(event) {
-    event.preventDefault();
+  event.preventDefault();
 
-    setLoading(true);
-    setMessage("");
-    setError("");
+  setLoading(true);
+  setMessage("");
+  setError("");
 
-    setTimeout(() => {
-      setMessage("Login realizado com sucesso!");
-      setLoading(false);
+  try {
+  const data = await loginUsuario({
+  email,
+  senha,
+});
 
-      if (userType === "ong") {
-        setCurrentPage("postagem");
-        return;
-      }
+    salvarSessao({
+      token: data.token,
+      usuario: data.usuario,
+      remember,
+    });
 
-      setCurrentPage("biblioteca");
-    }, 300);
+    setMessage("Login realizado com sucesso!");
+
+    if (data.usuario?.tipo === "ong") {
+      setCurrentPage("postagem");
+      return;
+    }
+
+    setCurrentPage("biblioteca");
+  } catch (err) {
+    setError(err.message || "Não foi possível fazer login.");
+  } finally {
+    setLoading(false);
   }
+}
 
-  function handleSignup(event) {
-    event.preventDefault();
+  async function handleSignup(event) {
+  event.preventDefault();
+
+  setLoading(true);
+  setMessage("");
+  setError("");
+
+  try {
+    const data = await cadastrarUsuario({
+      nome: nomeCadastro,
+      email: emailCadastro,
+      senha: senhaCadastro,
+      tipo: userType,
+    });
+
+    salvarSessao({
+      token: data.token,
+      usuario: data.usuario,
+      remember,
+    });
 
     setMessage("Cadastro realizado com sucesso!");
-    setError("");
 
-    setTimeout(() => {
-      if (userType === "ong") {
-        setCurrentPage("postagem");
-        return;
-      }
-      setCurrentPage("biblioteca");
-    }, 700);
+    if (data.usuario?.tipo === "ong") {
+      setCurrentPage("postagem");
+      return;
+    }
+
+    setCurrentPage("biblioteca");
+  } catch (err) {
+    setError(err.message || "Não foi possível criar a conta.");
+  } finally {
+    setLoading(false);
   }
+}
 
   return (
     <div className="new-login-container">
