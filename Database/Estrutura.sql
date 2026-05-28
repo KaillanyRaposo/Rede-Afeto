@@ -11,7 +11,7 @@ CREATE TABLE Usuario (
     -- comum = usuário padrão
     -- moderador = administração
     -- crianca = criança acolhida que acessa biblioteca
-    tipo ENUM('comum', 'moderador', 'crianca') DEFAULT 'comum',
+    tipo ENUM('comum', 'moderador', 'crianca','ong') DEFAULT 'comum',
 
     data_criacao TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
