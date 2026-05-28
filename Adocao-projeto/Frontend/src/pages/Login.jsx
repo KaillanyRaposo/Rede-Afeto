@@ -121,7 +121,7 @@ async function handleSignup(event) {
                 setError("");
               }}
             >
-              Crianca
+              Criança
             </button>
             <button
               type="button"
