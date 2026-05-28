@@ -31,10 +31,16 @@ export default function Login({ setCurrentPage, initialTab }) {
   setError("");
 
   try {
-  const data = await loginUsuario({
-  email,
-  senha,
-});
+    const data = await loginUsuario({
+      email,
+      senha,
+      tipo: userType,
+    });
+
+    if (data.usuario?.tipo !== userType) {
+      setError("Esse usuário não pertence a esse tipo de conta.");
+      return;
+    }
 
     salvarSessao({
       token: data.token,
@@ -44,7 +50,7 @@ export default function Login({ setCurrentPage, initialTab }) {
 
     setMessage("Login realizado com sucesso!");
 
-    if (data.usuario?.tipo === "ong") {
+    if (data.usuario.tipo === "ong") {
       setCurrentPage("postagem");
       return;
     }
@@ -57,7 +63,7 @@ export default function Login({ setCurrentPage, initialTab }) {
   }
 }
 
-  async function handleSignup(event) {
+async function handleSignup(event) {
   event.preventDefault();
 
   setLoading(true);

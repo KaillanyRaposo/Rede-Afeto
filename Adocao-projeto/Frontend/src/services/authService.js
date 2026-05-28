@@ -40,12 +40,13 @@ async function request(path, options = {}) {
   return data;
 }
 
-export async function loginUsuario({ email, senha }) {
+export async function loginUsuario({ email, senha, tipo }) {
   return request("/api/auth/login/", {
     method: "POST",
     body: JSON.stringify({
       email,
       senha,
+      tipo,
     }),
   });
 }
