@@ -113,9 +113,6 @@ export default function BibliotecaMateus({ setCurrentPage }) {
           <section className="biblioteca-section" aria-label="Livros que já li">
             <div className="biblioteca-section-head">
               <h2 className="biblioteca-section-title">Livros que já li</h2>
-              <button type="button" className="biblioteca-section-link">
-                Ver todos →
-              </button>
             </div>
 
             <div className="biblioteca-home-highlight-books" role="list">
@@ -140,9 +137,6 @@ export default function BibliotecaMateus({ setCurrentPage }) {
           <section className="biblioteca-section" aria-label="Livros que quero ler">
             <div className="biblioteca-section-head">
               <h2 className="biblioteca-section-title">Livros que quero ler</h2>
-              <button type="button" className="biblioteca-section-link">
-                Ver lista completa →
-              </button>
             </div>
 
             <div className="biblioteca-home-highlight-books" role="list">

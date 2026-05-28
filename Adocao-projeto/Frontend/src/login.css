@@ -260,6 +260,25 @@ html, body {
   transition: background 0.2s, border-color 0.2s;
 }
 
+@media (max-width: 600px) {
+  .new-login-container {
+    padding: 26px 14px;
+  }
+
+  .back-btn {
+    top: 14px;
+    left: 14px;
+  }
+
+  .logo-section {
+    margin-bottom: 18px;
+  }
+
+  .auth-card {
+    padding: 22px;
+  }
+}
+
 .user-type-btn:hover {
   background: rgba(134, 173, 182, 0.18);
   border-color: rgba(108, 143, 151, 0.75);

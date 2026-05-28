@@ -121,7 +121,7 @@ async function handleSignup(event) {
                 setError("");
               }}
             >
-              Criança
+              Usuário
             </button>
             <button
               type="button"
@@ -171,14 +171,14 @@ async function handleSignup(event) {
           {activeTab === "login" ? (
             <form className="form-section" onSubmit={handleLogin}>
               <div className="input-group">
-                <label htmlFor="login-email">{userType === "ong" ? "Email da ONG" : "Email"}</label>
+                <label htmlFor="login-email">{userType === "ong" ? "CNPJ" : "Email"}</label>
 
                 <div className="input-with-icon">
                   <span className="icon"></span>
                   <input
                     id="login-email"
                     type="email"
-                    placeholder="Digite seu email"
+                    placeholder={userType === "ong" ? "Digite seu CNPJ" : "Digite seu email"}
                     value={email}
                     onChange={(event) => setEmail(event.target.value)}
                   />

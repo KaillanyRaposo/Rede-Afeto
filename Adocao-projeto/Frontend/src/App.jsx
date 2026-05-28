@@ -16,12 +16,17 @@ import BibliotecaMateus from "./pages/BibliotecaMateus";
 import Biblioteca from "./pages/Biblioteca";
 import LivroSitio from "./pages/LivroSitio";
 import HistoricoPostagens from "./pages/HistoricoPostagens";
+import DiarioChat from "./components/DiarioChat";
 
 function App() {
   const [pageState, setPageState] = useState({ page: "home", initialTab: null });
 
   const setCurrentPage = (page, initialTab = null) => {
     setPageState({ page, initialTab });
+  };
+
+  const diarioConfigByPage = {
+    "biblioteca-mateus": { storageKey: "diario:mateus", childName: "Mateus" },
   };
 
   const renderPage = () => {
@@ -71,7 +76,20 @@ function App() {
     }
   };
 
-  return <>{renderPage()}</>;
+  const diarioConfig = diarioConfigByPage[pageState.page];
+
+  return (
+    <>
+      {renderPage()}
+      {diarioConfig ? (
+        <DiarioChat
+          key={diarioConfig.storageKey}
+          storageKey={diarioConfig.storageKey}
+          childName={diarioConfig.childName}
+        />
+      ) : null}
+    </>
+  );
 }
 
 export default App;

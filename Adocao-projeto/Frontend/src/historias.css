@@ -412,9 +412,23 @@
 }
 
 @media (max-width: 600px) {
+  .historias-brand {
+    font-size: 1.55rem;
+  }
+
   .historias-navlinks {
-    gap: 18px;
-    flex-wrap: wrap;
+    gap: 16px;
+    flex-wrap: nowrap;
+    width: 100%;
+    order: 3;
+    overflow-x: auto;
+    padding-bottom: 4px;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .historias-actions {
+    order: 2;
+    margin-left: auto;
   }
 
   .historias-title {
@@ -2289,5 +2303,281 @@
 
   .biblioteca-home-highlight:hover .biblioteca-home-highlight-cover-img {
     transform: none;
+  }
+}
+
+.diario-chat {
+  position: fixed;
+  right: 22px;
+  bottom: 22px;
+  z-index: 90;
+  width: 420px;
+  max-width: calc(100vw - 44px);
+}
+
+.diario-chat__panel {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  background: rgba(134, 173, 182, 0.16);
+  border: 1px solid rgba(44, 60, 60, 0.12);
+  border-radius: 18px;
+  box-shadow: 0 18px 48px rgba(44, 60, 60, 0.22);
+  backdrop-filter: blur(10px);
+  overflow: hidden;
+  height: min(560px, 70vh);
+}
+
+.diario-chat__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px 12px 10px;
+  border-bottom: 1px solid rgba(44, 60, 60, 0.08);
+}
+
+.diario-chat__header-actions {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.diario-chat__header-btn {
+  height: 34px;
+  border-radius: 10px;
+  border: 1px solid rgba(44, 60, 60, 0.12);
+  background: rgba(255, 255, 255, 0.72);
+  color: rgba(44, 60, 60, 0.9);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+  transition: transform 0.18s ease, box-shadow 0.18s ease, background 0.18s ease;
+}
+
+.diario-chat__header-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 12px 22px rgba(44, 60, 60, 0.12);
+  background: rgba(255, 255, 255, 0.88);
+}
+
+.diario-chat__header-btn--text {
+  padding: 0 12px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  background: #86adb6;
+  border-color: rgba(108, 143, 151, 0.82);
+  color: #2c3c3c;
+}
+
+.diario-chat__header-btn--text:hover {
+  background: #6c8f97;
+}
+
+.diario-chat__title {
+  font-weight: 700;
+  color: rgba(44, 60, 60, 0.9);
+  font-size: 0.95rem;
+}
+
+.diario-chat__toggle {
+  width: 34px;
+  height: 34px;
+  border-radius: 10px;
+  border: 1px solid rgba(44, 60, 60, 0.12);
+  background: rgba(255, 255, 255, 0.72);
+  color: rgba(44, 60, 60, 0.9);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.3rem;
+  line-height: 1;
+  transition: transform 0.18s ease, box-shadow 0.18s ease, background 0.18s ease;
+}
+
+.diario-chat__toggle:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 12px 22px rgba(44, 60, 60, 0.12);
+  background: rgba(255, 255, 255, 0.88);
+}
+
+.diario-chat__messages {
+  padding: 12px;
+  display: grid;
+  gap: 10px;
+  overflow: auto;
+  background: rgba(134, 173, 182, 0.14);
+  border: 1px solid rgba(44, 60, 60, 0.08);
+  border-radius: 16px;
+  margin: 12px;
+}
+
+.diario-chat__empty {
+  padding: 12px 12px;
+  border-radius: 14px;
+  background: rgba(134, 173, 182, 0.22);
+  border: 1px solid rgba(44, 60, 60, 0.06);
+  color: rgba(44, 60, 60, 0.68);
+  font-size: 0.85rem;
+  line-height: 1.45;
+}
+
+.diario-chat__message {
+  padding: 10px 12px;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.74);
+  border: 1px solid rgba(44, 60, 60, 0.06);
+  box-shadow: 0 10px 22px rgba(44, 60, 60, 0.08);
+  display: grid;
+  gap: 6px;
+}
+
+.diario-chat__message-text {
+  color: rgba(44, 60, 60, 0.78);
+  font-size: 0.88rem;
+  line-height: 1.45;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+.diario-chat__message-time {
+  color: rgba(44, 60, 60, 0.52);
+  font-size: 0.75rem;
+  line-height: 1;
+  justify-self: end;
+}
+
+.diario-chat__composer {
+  padding: 12px;
+  display: grid;
+  gap: 10px;
+  border-top: 1px solid rgba(44, 60, 60, 0.08);
+}
+
+.diario-chat__history {
+  padding: 14px 12px 12px;
+  gap: 14px;
+}
+
+.diario-chat__history-day {
+  display: grid;
+  gap: 10px;
+}
+
+.diario-chat__history-date {
+  font-weight: 800;
+  color: rgba(44, 60, 60, 0.82);
+  font-size: 0.82rem;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
+.diario-chat__history-items {
+  display: grid;
+  gap: 10px;
+}
+
+.diario-chat__history-item {
+  padding: 10px 12px;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.74);
+  border: 1px solid rgba(44, 60, 60, 0.06);
+  box-shadow: 0 10px 22px rgba(44, 60, 60, 0.08);
+  display: grid;
+  grid-template-columns: 52px 1fr;
+  gap: 10px;
+  align-items: start;
+}
+
+.diario-chat__history-time {
+  color: rgba(44, 60, 60, 0.52);
+  font-size: 0.8rem;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+}
+
+.diario-chat__history-text {
+  color: rgba(44, 60, 60, 0.78);
+  font-size: 0.88rem;
+  line-height: 1.45;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+.diario-chat__input {
+  width: 100%;
+  resize: none;
+  border-radius: 14px;
+  border: 1px solid rgba(44, 60, 60, 0.12);
+  padding: 10px 12px;
+  font-size: 0.88rem;
+  color: rgba(44, 60, 60, 0.84);
+  background: rgba(255, 255, 255, 0.84);
+  outline: none;
+}
+
+.diario-chat__input:focus {
+  border-color: rgba(134, 173, 182, 0.85);
+  box-shadow: 0 0 0 3px rgba(134, 173, 182, 0.25);
+}
+
+.diario-chat__send {
+  justify-self: end;
+  min-height: 40px;
+  padding: 0 16px;
+  border-radius: 999px;
+  cursor: pointer;
+  border: 1px solid rgba(108, 143, 151, 0.82);
+  background: #86adb6;
+  color: #2c3c3c;
+  font-weight: 600;
+  font-size: 0.85rem;
+  transition: transform 0.18s ease, box-shadow 0.18s ease, background 0.18s ease, opacity 0.18s ease;
+}
+
+.diario-chat__send:hover {
+  background: #6c8f97;
+  transform: translateY(-1px);
+  box-shadow: 0 12px 22px rgba(44, 60, 60, 0.12);
+}
+
+.diario-chat__send:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+.diario-chat__fab {
+  width: 92px;
+  height: 46px;
+  border-radius: 999px;
+  border: 1px solid rgba(108, 143, 151, 0.82);
+  background: #86adb6;
+  color: #2c3c3c;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 14px 34px rgba(44, 60, 60, 0.22);
+  transition: transform 0.18s ease, background 0.18s ease, box-shadow 0.18s ease;
+}
+
+.diario-chat__fab:hover {
+  background: #6c8f97;
+  transform: translateY(-1px);
+  box-shadow: 0 18px 48px rgba(44, 60, 60, 0.28);
+}
+
+@media (max-width: 600px) {
+  .diario-chat {
+    right: 14px;
+    bottom: 14px;
+    width: 340px;
+    max-width: calc(100vw - 28px);
+  }
+
+  .diario-chat__panel {
+    height: min(520px, 70vh);
   }
 }
