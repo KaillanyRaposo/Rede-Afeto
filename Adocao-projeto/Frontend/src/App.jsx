@@ -17,6 +17,7 @@ import Biblioteca from "./pages/Biblioteca";
 import LivroSitio from "./pages/LivroSitio";
 import HistoricoPostagens from "./pages/HistoricoPostagens";
 import DiarioChat from "./components/DiarioChat";
+import { getUsuario } from "./services/authService";
 
 function App() {
   const [pageState, setPageState] = useState({ page: "home", initialTab: null });
@@ -24,10 +25,19 @@ function App() {
   const setCurrentPage = (page, initialTab = null) => {
     setPageState({ page, initialTab });
   };
+const usuario = getUsuario();
 
-  const diarioConfigByPage = {
-    "biblioteca-mateus": { storageKey: "diario:mateus", childName: "Mateus" },
-  };
+const nomeCrianca =
+  usuario?.nome?.trim() || "criança";
+
+const idCrianca =
+  usuario?.id || nomeCrianca.toLowerCase().replace(/\s+/g, "-");
+const diarioConfigByPage = {
+  "biblioteca-mateus": {
+    storageKey: `diario:${idCrianca}`,
+    childName: nomeCrianca,
+  },
+};
 
   const renderPage = () => {
     switch (pageState.page) {
