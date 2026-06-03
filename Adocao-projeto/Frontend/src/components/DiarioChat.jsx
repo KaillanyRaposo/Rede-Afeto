@@ -82,7 +82,7 @@ export default function DiarioChat({ storageKey, childName }) {
 
   const title = useMemo(() => {
     if (!childName) return "Diário";
-    return `Diário da ${childName}`;
+    return `Diário do(a) ${childName}`;
   }, [childName]);
 
   useEffect(() => {

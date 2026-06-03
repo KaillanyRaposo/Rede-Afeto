@@ -5,6 +5,7 @@ import livro1Img from "../assets/historias/livro1.jpg";
 import livro2Img from "../assets/historias/livro2.jpg";
 import livro4Img from "../assets/historias/livro4.jpg";
 import livro7Img from "../assets/historias/livro7jpg.jpg";
+import { getUsuario, logoutUsuario } from "../services/authService";
 
 const readBooks = [
   {
@@ -57,6 +58,14 @@ function renderStars(rating, keyPrefix) {
 }
 
 export default function BibliotecaMateus({ setCurrentPage }) {
+  const usuario = getUsuario();
+  const nomeCrianca = usuario?.nome || "criança";
+
+  function sair() {
+    logoutUsuario();
+    setCurrentPage("home");
+  }
+
   return (
     <div className="biblioteca-page">
       <div className="home-bg" aria-hidden="true">
@@ -78,7 +87,7 @@ export default function BibliotecaMateus({ setCurrentPage }) {
           >
             Perfil
           </button>
-          <button type="button" className="historias-action-primary" onClick={() => setCurrentPage("home")}>
+          <button type="button" className="historias-action-primary"onClick={sair}>
             Sair
           </button>
         </div>
@@ -98,7 +107,7 @@ export default function BibliotecaMateus({ setCurrentPage }) {
               </div>
 
               <div className="biblioteca-hero-text">
-                <h1 className="biblioteca-title">Oi, Mateus!</h1>
+                <h1>Oi, {nomeCrianca}!</h1>
                 <p className="biblioteca-subtitle">
                   Que bom ver você de volta! Qual será a aventura de hoje no nosso mundo dos livros?
                 </p>
